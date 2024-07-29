@@ -1,0 +1,270 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* https://www.fontyab.com/5029/%d9%81%d9%88%d9%86%d8%aa-%d9%88%d8%b2%db%8c%d8%b1.html */
+/* https://css-tricks.com/snippets/css/using-font-face-in-css/ */
+@font-face {
+  font-family: "vazir";
+  src: url("Vazir.eot");
+  src: url("Vazir.ttf") format("embedded-opentype"),
+    url("Vazir.woff2") format("woff2"), url("Vazir.woff") format("woff"),
+    url("Vazir.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  direction: rtl;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: "vazir";
+  background-color: #0d0d0d;
+}
+
+#main-container {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#main-container .task-headline {
+  border: 1px solid #6f6659;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  padding: 25px 50px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#main-container .task-headline .task-headline-title {
+  margin-right: 40px;
+}
+
+#main-container .task-headline .task-headline-title h1 {
+  color: #d2c2a7;
+  font-size: 27px;
+}
+
+#main-container .task-headline .task-headline-title p {
+  color: #9b8f7b;
+}
+
+#main-container .task-headline .task-headline-counter {
+  width: 100px;
+  height: 100px;
+  background-color: #ff5631;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+#main-container .task-headline .task-headline-counter h2 {
+  font-size: 30px;
+  color: #0f0d0d;
+}
+
+#main-container .add-task {
+  margin-top: 40px;
+  width: 100%;
+}
+
+#main-container .add-task form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-container .add-task form input {
+  background-color: #1e1f1f;
+  padding: 15px 20px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  width: 85%;
+  color: #d2c2a7;
+  font-size: 14px;
+}
+
+#main-container .add-task form button {
+  margin-right: 10px;
+  background-color: #ff5631;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  cursor: pointer;
+}
+
+#main-container .add-task form button i {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#main-container .tasks {
+  margin-top: 30px;
+  width: 100%;
+}
+
+#main-container .tasks .active-tasks {
+  width: 100%;
+  display: block;
+}
+
+#main-container .tasks .active-tasks .task {
+  width: 100%;
+  padding: 20px 25px;
+  border: 1px solid #d2c2a7;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#main-container .tasks .active-tasks .task .task-item-right {
+  display: flex;
+}
+
+#main-container .tasks .active-tasks .task .task-item-right input {
+  cursor: pointer;
+  transform: scale(1.4);
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  -o-transform: scale(1.4);
+}
+/* clamp line  */
+#main-container .tasks .active-tasks .task .task-item-right p {
+  color: #d2c2a7;
+  font-size: 14px;
+  margin-right: 10px;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+#main-container
+  .tasks
+  .active-tasks
+  .task
+  .task-item-right
+  p.activeThroughLine {
+  text-decoration: line-through;
+}
+
+#main-container .tasks .active-tasks .task .task-item-left .edit-delete-icons {
+  display: flex;
+}
+
+#main-container .tasks .active-tasks .task .task-item-left i {
+  color: #d2c2a7;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0 7px;
+}
+
+#main-container .tasks .active-tasks .task .task-item-left .submit-icon {
+  display: none;
+  text-decoration: line-through;
+}
+
+#main-container
+  .tasks
+  .active-tasks
+  .task
+  .task-item-left.activeSubmitEdit
+  .edit-delete-icons {
+  display: none;
+}
+
+#main-container
+  .tasks
+  .active-tasks
+  .task
+  .task-item-left.activeSubmitEdit
+  .submit-icon {
+  display: flex;
+}
+
+#main-container .tasks .not-found-tasks {
+  width: 100%;
+  border: 0.1px dashed #d2c2a7;
+  padding: 10px 25px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#main-container .tasks .not-found-tasks img {
+  width: 200px;
+}
+
+#main-container .tasks .not-found-tasks p {
+  margin-top: 20px;
+  color: #d2c2a7;
+  text-align: center;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.copyright {
+  position: fixed;
+  bottom: 10px;
+  right: 40px;
+}
+
+.copyright p {
+  font-size: 16px;
+  color: #9b8f7b;
+}
+
+.copyright p span {
+  color: #ff5631;
+  font-style: italic;
+}

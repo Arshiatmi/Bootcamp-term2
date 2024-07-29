@@ -1,0 +1,87 @@
+{% load static %}
+
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/index.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <title>todo list</title>
+  </head>
+  <body>
+    <main id="main-container">
+      <div class="task-headline">
+        <div class="task-headline-title">
+          <h1>کار های من</h1>
+          <p>انجامش بده</p>
+        </div>
+        <div class="task-headline-counter">
+          <h2>{{ dones }}/{{ todos|length }}</h2>
+        </div>
+      </div>
+      <div class="add-task">
+        <form method="POST">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="text"
+            placeholder="کارتو رو اینجا بنویس"
+            required
+          />
+          <button type="submit"><i class="bi bi-plus"></i></button>
+        </form>
+      </div>
+      <div class="tasks">
+        <div class="active-tasks">
+          {% for task in todos %}
+          <div class="task">
+            <div class="task-item-right">
+              <form action="/todo/" class="check-task-form">
+                <input type="hidden" name="pk" value="{{ task.id }}">
+                <input type="checkbox" class="checkbox-btn" name="tasks" {% if task.checked %} checked {% endif %} />
+                <input type="hidden" name="operation" value="check">
+              </form>
+              <p class="task-text {% if task.checked %}activeThroughLine{% endif %}">{{ task.text }}</p>
+            </div>
+            <div class="task-item-left">
+              <div class="edit-delete-icons">
+                <form action="/todo/" method="POST" class="edit-task-form">
+                  {% csrf_token %}
+                  <input type="hidden" name="pk" value="{{ task.id }}">
+                  <input type="hidden" name="text" value="{{ task.text }}">
+                  <i class="bi bi-pen edit-icon"></i>
+                </form>
+                <form action="/todo/" method="GET" class="delete-task-form">
+                  <input type="hidden" name="pk" value="{{ task.id }}">
+                  <input type="hidden" name="operation" value="delete">
+                  <i class="bi bi-trash delete-icon"></i>
+                </form>
+              </div>
+              <div class="submit-icon">
+                <i class="bi bi-check check-icon"></i>
+                <i class="bi bi-x close-icon"></i>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% if not todos %}
+        <div class="not-found-tasks">
+          <img src="/static/no-tasks.svg" alt="no-tasks" />
+          <p>
+            کاری برای انجام وجود نداره پس به جای نگاه کردن برو بالا یکی اضافه کن
+            🙁
+          </p>
+        </div>
+        {% endif %}
+      </div>
+    </main>
+
+    <div class="copyright">
+      <p>ساخته شده با عشق توسط تیم <span>رایا</span></p>
+    </div>
+
+    <script src="/static/index.js"></script>
+  </body>
+</html>
