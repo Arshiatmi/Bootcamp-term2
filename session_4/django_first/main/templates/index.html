@@ -7,40 +7,49 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/static/style.css" />
     <title>Document</title>
   </head>
   <body>
     <main>
       <div class="task-haeder">
         <div class="counter">
-          <h5>0/1</h5>
+          <h5>{{ checked_count }}/{{ todos|length }}</h5>
         </div>
         <div class="header-title">
           <h1>کارهای من</h1>
           <p>انجامش بده</p>
         </div>
       </div>
-      <form action="#" class="add-task">
-        <input type="text" placeholder="کارتو اینجا بنویس" />
+      <form action="/" class="add-task" method="POST">
+        {% csrf_token %}
+        <input type="text" name="text" placeholder="کارتو اینجا بنویس" />
         <button type="submit" class="submit">
           <i class="bx bx-plus"></i>
         </button>
       </form>
+      {% for task in todos %}
       <div class="task-container">
         <div class="show-task">
-          <form action="#" class="task-check">
-            <input type="checkbox" />
+          <form action="/todo/check/" class="task-check">
+            <input type="hidden" name="pk" value="{{ task.pk }}">
+            {% if task.checked %}
+              <input type="checkbox" checked/>
+            {% else %}
+              <input type="checkbox"/>
+            {% endif %}
             <p>
-              Lorem ipsum dolor sit amet consectetur.
+              {{ task.text }}
             </p>
           </form>
           <div class="icon">
             <div class="edit-delete">
-              <form action="#">
+              <form action="/todo/change/">
+                <input type="hidden" name="pk" value="{{ task.pk }}">
                 <i class='bx bxs-pencil'></i>
               </form>
-              <form action="#">
+              <form action="/todo/delete/">
+                <input type="hidden" name="pk" value="{{ task.pk }}">
                 <i class='bx bxs-trash-alt'></i>
               </form>
             </div>
@@ -52,6 +61,7 @@
         </div>
         <div class="empty-task"></div>
       </div>
+      {% endfor %}
     </main>
   </body>
 </html>

@@ -9,30 +9,34 @@ class ExersiceHomeOneTest(unittest.TestCase):
         target_product = get_product_by_name_or_return_none("test")
         previous_price = target_product["price"]
         previous_count = target_product["count"]
-        response = buy("test",1)
-        self.assertEqual(target_product["price"], previous_price + (previous_price * 0.1))
+        response = buy("test", 1)
+        self.assertEqual(target_product["price"],
+                         previous_price + (previous_price * 0.1))
         self.assertEqual(target_product["count"], previous_count - 1)
         self.assertEqual(response, True)
 
-        response = buy("someting_that_doesnt_exist_in_dictionary_of_products",1)
+        response = buy(
+            "buy_someting_that_doesnt_exist_in_dictionary_of_products", 1)
         self.assertEqual(response, False)
 
     def test_add(self):
-        self.assertRaises(ValueError,add,"test",1,10000)
+        self.assertEqual(add("test", 1, 10000), False)
 
-        response = add("someting_that_doesnt_exist_in_dictionary_of_products",1,10000)
+        response = add(
+            "add_someting_that_doesnt_exist_in_dictionary_of_products", 1, 10000)
         self.assertEqual(response, True)
-        target_product = get_product_by_name_or_return_none("someting_that_doesnt_exist_in_dictionary_of_products")
-        self.assertEqual(target_product["price"],10000)
+        target_product = get_product_by_name_or_return_none(
+            "add_someting_that_doesnt_exist_in_dictionary_of_products")
+        self.assertEqual(target_product["price"], 10000)
 
     def test_delete(self):
-        self.assertIn("test",PRODUCTS)
+        self.assertIn("test", PRODUCTS)
         response = delete("test")
         self.assertEqual(response, True)
-        self.assertNotIn("test",PRODUCTS)
+        self.assertNotIn("test", PRODUCTS)
 
     def test_change(self):
-        response = change("test",50,20000)
+        response = change("test", 50, 20000)
         target_product = get_product_by_name_or_return_none("test")
         self.assertEqual(target_product["price"], 20000)
         self.assertEqual(target_product["count"], 50)
