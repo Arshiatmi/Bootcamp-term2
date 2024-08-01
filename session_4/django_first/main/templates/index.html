@@ -28,40 +28,43 @@
           <i class="bx bx-plus"></i>
         </button>
       </form>
-      {% for task in todos %}
       <div class="task-container">
+        {% for task in todos %}
         <div class="show-task">
           <form action="/todo/check/" class="task-check">
-            <input type="hidden" name="pk" value="{{ task.pk }}">
+            <input type="hidden" name="pk" value="{{ task.pk }}" />
             {% if task.checked %}
-              <input type="checkbox" checked/>
+            <input type="checkbox" checked />
+            <p class="activeSubmit content">{{ task.text }}</p>
             {% else %}
-              <input type="checkbox"/>
+            <input type="checkbox" />
+            <p class="content">{{ task.text }}</p>
             {% endif %}
-            <p>
-              {{ task.text }}
-            </p>
           </form>
           <div class="icon">
             <div class="edit-delete">
-              <form action="/todo/change/">
-                <input type="hidden" name="pk" value="{{ task.pk }}">
-                <i class='bx bxs-pencil'></i>
+              <form action="/todo/change/" class="form-change">
+                <input type="hidden" name="pk" value="{{ task.pk }}" />
+                <input type="hidden" name="text" class="text-change" />
+                <i class="bx bxs-pencil"></i>
               </form>
-              <form action="/todo/delete/">
-                <input type="hidden" name="pk" value="{{ task.pk }}">
-                <i class='bx bxs-trash-alt'></i>
+              <form action="/todo/delete/" class="form-delete">
+                <input type="hidden" name="pk" value="{{ task.pk }}" />
+                <i class="bx bxs-trash-alt"></i>
               </form>
             </div>
             <div class="check-icon">
-              <i class='bx bx-check'></i>
-              <i class='bx bx-x'></i>
+              <i class="bx bx-check"></i>
+              <i class="bx bx-x"></i>
             </div>
           </div>
         </div>
+        {% endfor %} {% if not todos %}
         <div class="empty-task"></div>
+        {% endif %}
       </div>
-      {% endfor %}
     </main>
+
+    <script src="/static/index.js"></script>
   </body>
 </html>
