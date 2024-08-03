@@ -24,6 +24,7 @@ class TodoCheckView(View):
             obj.checked = False
         else:
             obj.checked = True
+        obj.save()
         return redirect("/")
 
 
