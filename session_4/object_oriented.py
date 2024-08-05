@@ -3,8 +3,9 @@ class Car:
         self.speed = speed
         self.MAX_SPEED = MAX_SPEED
 
-    def increase_speed(self,speed):
+    def increase_speed(self, speed):
         self.speed += speed
+
 
 BMW = Car(speed=50, MAX_SPEED=200)
 BENZ = Car(speed=10)
