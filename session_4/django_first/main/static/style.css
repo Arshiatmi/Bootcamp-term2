@@ -138,14 +138,14 @@ main .task-container {
   justify-content: space-between;
 }
 
-.icon .edit-delete{
-  display: none;
+.icon .edit-delete {
+  display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .icon .check-icon {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 10px;
 }
@@ -156,7 +156,20 @@ main .task-container {
   gap: 10px;
 }
 
-.task-check input{
+.icon.showCheckIcon .check-icon {
+  display: flex;
+}
+
+.icon.showCheckIcon .edit-delete {
+  display: none;
+}
+
+.activeSubmit {
+  color: blue;
+  text-decoration: line-through;
+}
+
+.task-check input {
   width: 20px;
   height: 20px;
 }
