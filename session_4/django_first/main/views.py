@@ -34,6 +34,7 @@ class TodoDeleteView(View):
         obj.delete()
         return redirect("/")
 
+
 class TodoChangeView(View):
     def get(self, request):
         pk = request.GET["pk"]
