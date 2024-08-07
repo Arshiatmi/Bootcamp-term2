@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from main.views import MainView
+from api.views import AccountAPIView, CategoryAPIView, TransactionAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MainView.as_view()),
+    path('api/accounts/', AccountAPIView.as_view()),
+    path('api/categories/', CategoryAPIView.as_view()),
+    path('api/transactions/', TransactionAPIView.as_view()),
 ]

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from main.models import Category, Account, Transactions
+from main.models import Category, Account, Transaction
+from django_jalali.admin.filters import JDateFieldListFilter
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -9,6 +10,8 @@ class CategoryAdmin(admin.ModelAdmin):
 class AccountAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(Transactions)
+@admin.register(Transaction)
 class TransactionsAdmin(admin.ModelAdmin):
-    pass
+    list_filter = (
+        ('datetime', JDateFieldListFilter),
+    )
